@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import DeconzClient from './api/deconz-client'
+import { UrlStore } from './api-url-store'
 import { parseData } from './data-scrubber'
 import { Light } from './light'
 import { Sensor } from './sensor'
 import { Group } from './group'
 
-let config
-if (process.env.NODE_ENV === 'development') {
-  config = require('../dev-settings.json')
-} else {
-  config = {}
-}
-
 export const Application = () => {
+  const [apiUrl, setApiUrl] = useState('')
   const [apiData, setApiData] = useState()
 
   useEffect(() => {
-    const client = DeconzClient.init(config.API_URL)
+    if (!apiUrl) return
+
+    const client = DeconzClient.init(apiUrl)
     client.fetchAll().then(data => {
       const prettyData = parseData(data)
       setApiData(prettyData)
     })
-  }, [])
+  }, [apiUrl])
 
   const shouldShowContent = !!apiData
+  const hasApiUrl = !!apiUrl
 
   return (
     <div>
+      {!hasApiUrl && <UrlStore setUrl={setApiUrl} />}
+
       {shouldShowContent && <Content apiData={apiData} />}
     </div>
   )
