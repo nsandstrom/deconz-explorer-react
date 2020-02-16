@@ -5,6 +5,13 @@ import { Light } from "./light"
 import { Sensor } from "./sensor"
 import { Group } from "./group"
 
+let config
+if (process.env.NODE_ENV === 'development') {
+  config = require('../dev-settings.json')
+} else {
+  config = {}
+}
+
 export const Application = () => {
   const [apiData, setApiData] = useState({
     lights: {},
@@ -13,7 +20,8 @@ export const Application = () => {
   })
 
   useEffect(() => {
-    DeconzClient.fetchAll().then(data => {
+    const client = DeconzClient.init(config.API_URL)
+    client.fetchAll().then(data => {
       const prettyData = parseData(data)
       setApiData(prettyData)
     })

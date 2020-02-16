@@ -1,10 +1,9 @@
-let config
-if (process.env.NODE_ENV === 'development') {
-  config = require('../dev-settings.json')
-} else {
-  config = {}
+let URL
+
+const init = url => {
+  URL = url
+  return client
 }
-const URL = config.API_URL
 
 const fetchAll = () => {
   return new Promise((resolve, reject) => {
@@ -21,7 +20,9 @@ const fetchAll = () => {
   })
 }
 
-export default { fetchAll }
+const client = { fetchAll }
+
+export default { init }
 
 class ApiError extends Error {
   constructor(message) {
@@ -29,3 +30,4 @@ class ApiError extends Error {
     this.customMessage = message
   }
 }
+
