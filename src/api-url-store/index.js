@@ -5,8 +5,11 @@ import { MemoryStore } from './memory-store'
 export const UrlStore = ({ setUrl }) => {
   return (
     <div>
-      {devStoreIsValid() && <DevStore setUrl={setUrl} />}
+      {showDevStore() && <DevStore setUrl={setUrl} />}
       <MemoryStore setUrl={setUrl} />
     </div>
   )
 }
+
+const showDevStore = () =>
+  process.env.NODE_ENV === 'development' && devStoreIsValid()
