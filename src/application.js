@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
-import DeconzClient from "./deconz-client"
-import { parseData } from "./data-scrubber"
-import { Light } from "./light"
-import { Sensor } from "./sensor"
-import { Group } from "./group"
+import React, { useState, useEffect } from 'react'
+import DeconzClient from './api/deconz-client'
+import { parseData } from './data-scrubber'
+import { Light } from './light'
+import { Sensor } from './sensor'
+import { Group } from './group'
 
 let config
 if (process.env.NODE_ENV === 'development') {
