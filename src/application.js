@@ -13,11 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export const Application = () => {
-  const [apiData, setApiData] = useState({
-    lights: {},
-    sensors: {},
-    groups: {}
-  })
+  const [apiData, setApiData] = useState()
 
   useEffect(() => {
     const client = DeconzClient.init(config.API_URL)
@@ -27,9 +23,11 @@ export const Application = () => {
     })
   }, [])
 
+  const shouldShowContent = !!apiData
+
   return (
     <div>
-      <Content apiData={apiData} />
+      {shouldShowContent && <Content apiData={apiData} />}
     </div>
   )
 }
