@@ -1,0 +1,18 @@
+.item {
+  position: relative;
+  background-color: #eee;
+  width: 600px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.arrow {
+  position: absolute;
+  right: 0px;
+  padding-right: 10px;
+}

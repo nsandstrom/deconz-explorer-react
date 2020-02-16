@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+
+dist/
+dev-settings.json
+
+npm-debug.log
+.DS_Store
+.[Vv][Ss][Cc]ode*
