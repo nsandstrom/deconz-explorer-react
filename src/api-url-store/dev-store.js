@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
-const devSettings = require('../../dev-settings.json')
-const url = devSettings.API_URL
+let url
+try {
+  const devSettings = require('../../dev-settings.json')
+  url = devSettings.API_URL
+} catch (error) {}
 
+import React, { useEffect } from 'react'
 let isFirstLoad = true
 
-export const devStoreIsValid = () => url !== undefined
+const devStoreIsValid = () => url !== undefined
 
-export const DevStore = props => {
+const DevStore = props => {
   useEffect(() => {
     if (isFirstLoad) setUrl()
   }, [])
@@ -23,3 +26,5 @@ export const DevStore = props => {
     </div>
   )
 }
+
+export const devStore = devStoreIsValid() ? DevStore : undefined
