@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import DeconzClient from './api/deconz-client'
 import { UrlStore } from './api-url-store'
 import { parseData } from './data-scrubber'
-import { Light } from './light'
-import { Sensor } from './sensor'
-import { Group } from './group'
+import { Items } from './items'
 
 export const Application = () => {
   const [apiUrl, setApiUrl] = useState('')
@@ -27,7 +25,7 @@ export const Application = () => {
     <div>
       {!hasApiUrl && <UrlStore setUrl={setApiUrl} />}
 
-      {shouldShowContent && <Content apiData={apiData} />}
+      {shouldShowContent && <Items apiData={apiData} />}
     </div>
   )
 }
