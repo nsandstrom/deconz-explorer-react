@@ -10,13 +10,16 @@ export const Application = () => {
 
   useEffect(() => {
     if (!apiUrl) return
+    updateItems()
+  }, [apiUrl])
 
+  const updateItems = () => {
     const client = DeconzClient.init(apiUrl)
     client.fetchAll().then(data => {
       const prettyData = parseData(data)
       setApiData(prettyData)
     })
-  }, [apiUrl])
+  }
 
   const shouldShowContent = !!apiData
   const hasApiUrl = !!apiUrl
@@ -29,20 +32,3 @@ export const Application = () => {
     </div>
   )
 }
-
-const Content = ({ apiData }) => (
-  <div>
-    <h2>Lights</h2>
-    {Object.entries(apiData.lights).map(([id, light]) => {
-      return <Light key={id} id={id} light={light} />
-    })}
-    <h2>Sensors</h2>
-    {Object.entries(apiData.sensors).map(([id, sensor]) => {
-      return <Sensor key={id} id={id} sensor={sensor} />
-    })}
-    <h2>Groups</h2>
-    {Object.entries(apiData.groups).map(([id, group]) => {
-      return <Group key={id} id={id} group={group} />
-    })}
-  </div>
-)
