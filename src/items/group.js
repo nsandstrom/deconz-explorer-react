@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { printValue } from './shared'
 import './items.scss'
 
 export const Group = ({ id, group }) => {
@@ -24,11 +25,9 @@ const ExpandButton = ({ expanded }) => {
 }
 
 const ExtraInfo = ({ group }) => {
-  const { action, state, ...rest } = group
-
   return (
     <div className="details">
-      {Object.entries(rest).map(([key, value]) => {
+      {Object.entries(group).map(([key, value]) => {
         return (
           <div key={key}>
             {key} : {printValue(value)}
@@ -37,12 +36,4 @@ const ExtraInfo = ({ group }) => {
       })}
     </div>
   )
-}
-
-const printValue = value => {
-  if (typeof value == 'boolean') {
-    return value ? 'true' : 'false'
-  }
-
-  return value
 }
