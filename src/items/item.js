@@ -42,7 +42,7 @@ const ExpandButton = ({ expanded }) => {
 const ExtraInfo = ({ item }) => {
   return (
     <div className="details">
-      {Object.entries(group).map(([key, value]) => {
+      {Object.entries(item).map(([key, value]) => {
         return (
           <div key={key}>
             {key} : {printValue(value)}
