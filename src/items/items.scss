@@ -11,14 +11,33 @@
   padding-right: 8px;
 }
 
-.title {
+h3 {
+  display: inline;
   padding-right: 8px;
   font-size: 16px;
   font-weight: 700;
+}
+
+.type {
+  padding-right: 8px;
 }
 
 .arrow {
   position: absolute;
   right: 0px;
   padding-right: 10px;
+}
+
+.member-lights {
+  font-size: 14px;
+  h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+  }
 }

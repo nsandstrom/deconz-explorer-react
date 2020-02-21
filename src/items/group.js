@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { printValue } from './shared'
+import { ItemStore } from '../item-store'
 import './items.scss'
 
 export const Group = ({ group }) => {
-  const state = group.state
 
   const [expanded, setExpanded] = useState(false)
 
@@ -15,6 +15,8 @@ export const Group = ({ group }) => {
     <div className="item" onClick={toggleExpanded}>
       <ExpandButton expanded={expanded} />
       <Header item={group} />
+
+      {group.lights.length > 0 && <Lights lights={group.lights} />}
 
       {expanded && <ExtraInfo group={group} />}
     </div>
@@ -30,8 +32,21 @@ const Header = ({ item }) => (
 )
 
 const Id = ({ children }) => <span className="id">{children}</span>
-const Title = ({ children }) => <span className="title">{children}</span>
+const Title = ({ children }) => <h3 className="title">{children}</h3>
 const Type = ({ children }) => <span className="type">{children}</span>
+
+const Lights = ({ lights }) => (
+  <div className="member-lights">
+    <h4>Lights</h4>
+    <ul>
+      {lights.map(id => (
+        <Light key={id}>{ItemStore.get.light(id).name}</Light>
+      ))}
+    </ul>
+  </div>
+)
+
+const Light = ({ children }) => <li className="member-light">{children}</li>
 
 const ExpandButton = ({ expanded }) => {
   return <span className="arrow"> {expanded ? '/\\' : '\\/'}</span>
