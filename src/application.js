@@ -3,6 +3,7 @@ import DeconzClient from './api/deconz-client'
 import { UrlStore } from './api-url-store'
 import { parseData } from './data-scrubber'
 import { Items } from './items'
+import { ItemStore } from './item-store'
 
 export const Application = () => {
   const [apiUrl, setApiUrl] = useState('')
@@ -17,6 +18,9 @@ export const Application = () => {
     const client = DeconzClient.init(apiUrl)
     client.fetchAll().then(data => {
       const prettyData = parseData(data)
+
+      ItemStore.update(prettyData)
+
       setApiData(prettyData)
     })
   }
@@ -26,6 +30,10 @@ export const Application = () => {
 
   return (
     <div>
+      {hasApiUrl && <button onClick={() => setApiUrl('')}>X</button>}
+      {hasApiUrl && <button onClick={() => updateItems('')}>X</button>}
+      {hasApiUrl && <button onClick={() => ItemStore.setTest()}>X</button>}
+
       {!hasApiUrl && <UrlStore setUrl={setApiUrl} />}
 
       {shouldShowContent && <Items apiData={apiData} />}
