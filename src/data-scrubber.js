@@ -40,7 +40,6 @@ const detectSwitch = sensor => {
 
 const selectSensors = sensors => sensors.filter(detectSensor)
 const detectSensor = sensor => {
-  if (!sensors.includes(sensor.type)) console.log(sensor.type)
   return sensors.includes(sensor.type)
 }
 

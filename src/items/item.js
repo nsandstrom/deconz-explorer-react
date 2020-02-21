@@ -3,7 +3,6 @@ import { printValue } from './shared'
 import './items.scss'
 
 export const Item = ({ item, children }) => {
-
   const [expanded, setExpanded] = useState(false)
 
   const toggleExpanded = () => {
@@ -33,7 +32,6 @@ const Id = ({ children }) => <span className="id">{children}</span>
 const Title = ({ children }) => <h3 className="title">{children}</h3>
 const Type = ({ children }) => <span className="type">{children}</span>
 
-
 const ExpandButton = ({ expanded }) => {
   return <span className="arrow"> {expanded ? '/\\' : '\\/'}</span>
 }
@@ -51,3 +49,14 @@ const ExtraInfo = ({ item }) => {
     </div>
   )
 }
+
+export const List = ({ title, items }) => (
+  <div className="sub-items">
+    <h4>{title}</h4>
+    <ul>
+      {items.map(item => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  </div>
+)

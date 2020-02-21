@@ -1,6 +1,6 @@
 import React from 'react'
 import { ItemStore } from '../item-store'
-import { Item } from './item'
+import { Item, List } from './item'
 import './items.scss'
 
 export const Group = ({ group }) => {
@@ -31,14 +31,3 @@ const getSwitchName = id => {
 
 const Lights = ({ lights }) => <List title="Lights" items={makeLightList(lights)} />
 const Devices = ({ devices }) => <List title="Device membership" items={makeDeviceList(devices)} />
-
-const List = ({ title, items }) => (
-  <div className="sub-items">
-    <h4>{title}</h4>
-    <ul>
-      {items.map(item => (
-        <li key={item}>{item}</li>
-      ))}
-    </ul>
-  </div>
-)
