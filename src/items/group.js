@@ -8,10 +8,19 @@ export const Group = ({ group }) => {
 
   return (
     <Item item={group}>
-      {isDeviceMember() && <Device devices={group.devicemembership} />}
+      {isDeviceMember() && <Devices devices={group.devicemembership} />}
       {group.lights.length > 0 && <Lights lights={group.lights} />}
     </Item>
   )
+}
+
+const makeLightList = lights => lights.map(getLightName)
+const makeDeviceList = devices => devices.map(getSwitchName)
+
+const getLightName = id => {
+  const light = ItemStore.light(id)
+  if (!light) return 'Unknown light, id: ' + id
+  return light.name
 }
 
 const getSwitchName = id => {
@@ -20,23 +29,15 @@ const getSwitchName = id => {
   return switch_.name
 }
 
-const Lights = ({ lights }) => (
-  <div className="sub-items">
-    <h4>Lights</h4>
-    <ul>
-      {lights.map(id => (
-        <li key={id}>{ItemStore.light(id).name}</li>
-      ))}
-    </ul>
-  </div>
-)
+const Lights = ({ lights }) => <List title="Lights" items={makeLightList(lights)} />
+const Devices = ({ devices }) => <List title="Device membership" items={makeDeviceList(devices)} />
 
-const Device = ({ devices }) => (
+const List = ({ title, items }) => (
   <div className="sub-items">
-    <h4>Device membership</h4>
+    <h4>{title}</h4>
     <ul>
-      {devices.map(id => (
-        <li key={id}> {getSwitchName(id)} </li>
+      {items.map(item => (
+        <li key={item}>{item}</li>
       ))}
     </ul>
   </div>
