@@ -15,7 +15,8 @@ const parseSensors = raw => {
 }
 
 const parseGroups = raw => {
-  return dictionaryToArray(raw)
+  const groups = dictionaryToArray(raw)
+  return cleanupGroups(groups)
 }
 
 const dictionaryToArray = dict =>
@@ -23,3 +24,10 @@ const dictionaryToArray = dict =>
     id,
     ...entry
   }))
+
+const cleanupGroups = groups => groups.map(cleanupGroup)
+
+const cleanupGroup = group => {
+  if(group.devicemembership.length > 0) group.type="DeviceGroup"
+  return group
+}
