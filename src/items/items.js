@@ -6,8 +6,8 @@ import { Group } from './group'
 export const Items = ({ apiData }) => (
   <div>
     <h2>Lights</h2>
-    {Object.entries(apiData.lights).map(([id, light]) => {
-      return <Light key={id} id={id} light={light} />
+    {apiData.lights.map(light => {
+      return <Light key={light.id} light={light} />
     })}
     <h2>Sensors</h2>
     {Object.entries(apiData.sensors).map(([id, sensor]) => {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './items.scss'
 
-export const Light = ({ id, light }) => {
+export const Light = ({ light }) => {
+  const id = light.id
   const state = light.state
 
   const [expanded, setExpanded] = useState(false)
