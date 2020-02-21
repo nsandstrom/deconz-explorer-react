@@ -1,9 +1,9 @@
 export const parseData = data => {
   const lights = parseLights(data.lights)
   const sensors = parseSensors(data.sensors)
+  const switches = parseSwitches(data.sensors)
   const groups = parseGroups(data.groups)
-
-  return { lights, sensors, groups }
+  return { lights, sensors, groups, switches }
 }
 
 const parseLights = raw => {
@@ -11,7 +11,13 @@ const parseLights = raw => {
 }
 
 const parseSensors = raw => {
-  return dictionaryToArray(raw)
+  const sensors = dictionaryToArray(raw)
+  return selectSensors(sensors)
+}
+
+const parseSwitches = raw => {
+  const sensors = dictionaryToArray(raw)
+  return selectSwitches(sensors)
 }
 
 const parseGroups = raw => {
@@ -22,8 +28,20 @@ const parseGroups = raw => {
 const dictionaryToArray = dict => Object.entries(dict).map(([id, entry]) => ({ id, ...entry }))
 
 const cleanupGroups = groups => groups.map(cleanupGroup)
-
 const cleanupGroup = group => {
-  if(group.devicemembership.length > 0) group.type="DeviceGroup"
+  if (group.devicemembership.length > 0) group.type = 'DeviceGroup'
   return group
 }
+
+const selectSwitches = sensors => sensors.filter(detectSwitch)
+const detectSwitch = sensor => {
+  return sensor.type === 'ZHASwitch'
+}
+
+const selectSensors = sensors => sensors.filter(detectSensor)
+const detectSensor = sensor => {
+  if (!sensors.includes(sensor.type)) console.log(sensor.type)
+  return sensors.includes(sensor.type)
+}
+
+const sensors = ['ZHATemperature', 'ZHAHumidity', 'ZHAPressure', 'ZHAOpenClose', 'ZHALightLevel', 'ZHAPresence']
