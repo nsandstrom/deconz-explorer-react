@@ -11,8 +11,8 @@ class _ItemStore {
     }
   }
 
-  get get() {
-    return { light: id => this.lights.find(byIdFinder(id)) }
+  light(id) {
+    return this.lights.find(byIdFinder(id))
   }
 }
 

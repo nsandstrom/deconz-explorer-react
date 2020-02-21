@@ -40,7 +40,7 @@ const Lights = ({ lights }) => (
     <h4>Lights</h4>
     <ul>
       {lights.map(id => (
-        <Light key={id}>{ItemStore.get.light(id).name}</Light>
+        <Light key={id}>{ItemStore.light(id).name}</Light>
       ))}
     </ul>
   </div>
