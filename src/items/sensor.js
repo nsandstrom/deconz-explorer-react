@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './items.scss'
 
-export const Sensor = ({ id, sensor }) => {
+export const Sensor = ({ sensor }) => {
   const state = sensor.state
 
   const [expanded, setExpanded] = useState(false)
@@ -12,7 +12,7 @@ export const Sensor = ({ id, sensor }) => {
 
   return (
     <div className="item" onClick={toggleExpanded}>
-      {id} <span className="title">{sensor.name}</span> {sensor.type}{' '}
+      {sensor.id} <span className="title">{sensor.name}</span> {sensor.type}{' '}
       <ExpandButton expanded={expanded} />
       {expanded && <ExtraInfo sensor={sensor} />}
     </div>

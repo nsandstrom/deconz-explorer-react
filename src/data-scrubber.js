@@ -11,11 +11,11 @@ const parseLights = raw => {
 }
 
 const parseSensors = raw => {
-  return raw
+  return dictionaryToArray(raw)
 }
 
 const parseGroups = raw => {
-  return raw
+  return dictionaryToArray(raw)
 }
 
 const dictionaryToArray = dict =>

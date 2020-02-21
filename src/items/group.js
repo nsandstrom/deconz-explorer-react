@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { printValue } from './shared'
 import './items.scss'
 
-export const Group = ({ id, group }) => {
-  group.id = id
+export const Group = ({ group }) => {
   const state = group.state
 
   const [expanded, setExpanded] = useState(false)

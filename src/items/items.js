@@ -10,12 +10,12 @@ export const Items = ({ apiData }) => (
       return <Light key={light.id} light={light} />
     })}
     <h2>Sensors</h2>
-    {Object.entries(apiData.sensors).map(([id, sensor]) => {
-      return <Sensor key={id} id={id} sensor={sensor} />
+    {apiData.sensors.map(sensor => {
+      return <Sensor key={sensor.id} sensor={sensor} />
     })}
     <h2>Groups</h2>
-    {Object.entries(apiData.groups).map(([id, group]) => {
-      return <Group key={id} id={id} group={group} />
+    {apiData.groups.map(group => {
+      return <Group key={group.id} group={group} />
     })}
   </div>
 )
