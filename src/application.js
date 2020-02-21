@@ -30,9 +30,8 @@ export const Application = () => {
 
   return (
     <div>
-      {hasApiUrl && <button onClick={() => setApiUrl('')}>X</button>}
-      {hasApiUrl && <button onClick={() => updateItems('')}>X</button>}
-      {hasApiUrl && <button onClick={() => ItemStore.setTest()}>X</button>}
+      {hasApiUrl && <button onClick={() => setApiUrl('')}>Clear API path</button>}
+      {hasApiUrl && <button onClick={() => updateItems()}>Reload</button>}
 
       {!hasApiUrl && <UrlStore setUrl={setApiUrl} />}
 
