@@ -1,5 +1,5 @@
 semi: false
-printWidth: 80
+printWidth: 120
 proseWrap: "preserve"
 tabWidth: 2
 singleQuote: true

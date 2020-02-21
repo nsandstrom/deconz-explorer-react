@@ -19,11 +19,7 @@ const parseGroups = raw => {
   return cleanupGroups(groups)
 }
 
-const dictionaryToArray = dict =>
-  Object.entries(dict).map(([id, entry]) => ({
-    id,
-    ...entry
-  }))
+const dictionaryToArray = dict => Object.entries(dict).map(([id, entry]) => ({ id, ...entry }))
 
 const cleanupGroups = groups => groups.map(cleanupGroup)
 
