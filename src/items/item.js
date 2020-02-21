@@ -26,7 +26,6 @@ const Header = ({ item }) => (
     <Id>{item.id}</Id>
     <Title>{item.name}</Title>
     <Type>{item.type}</Type>
-    <Type>{item.status}</Type>
   </div>
 )
 
