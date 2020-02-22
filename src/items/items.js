@@ -2,7 +2,7 @@ import React from 'react'
 import { Light } from './light'
 import { Sensor } from './sensor'
 import { Switch } from './switch'
-import { Group } from './group'
+import { Group } from './groups/group'
 
 export const Items = ({ apiData }) => (
   <div>

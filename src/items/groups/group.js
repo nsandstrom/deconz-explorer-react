@@ -1,7 +1,6 @@
 import React from 'react'
-import { ItemStore } from '../item-store'
-import { Item, List } from './item'
-import './items.scss'
+import { ItemStore } from '../../item-store'
+import { Item, List } from '../item'
 
 export const Group = ({ group }) => {
   const isDeviceMember = () => group.type === 'DeviceGroup'
