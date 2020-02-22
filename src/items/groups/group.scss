@@ -1,0 +1,22 @@
+.edit {
+  .container {
+    border: 2px solid black;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    min-height: 100%;
+    margin-bottom: 8px;
+
+    z-index: 2;
+
+    background-color: #eee;
+    .content {
+      padding: 10px;
+    }
+
+    form {
+      margin-bottom: 0px;
+    }
+  }
+}

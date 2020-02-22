@@ -20,9 +20,33 @@ const fetchAll = () => {
   })
 }
 
-const client = { fetchAll }
+const updateGroup = (id, attributes) => {
+  return new Promise((resolve, reject) => {
+    const url = URL + '/groups/' + id
 
-export default { init }
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(attributes)
+    }
+
+    fetch(url, options)
+      .then(response => {
+        if (!response.ok) {
+          throw { status: response.status }
+        }
+        return response
+      })
+      .then(resolve)
+      .catch(reject)
+  })
+}
+
+const client = { fetchAll, updateGroup }
+
+export default { init, updateGroup }
 
 class ApiError extends Error {
   constructor(message) {
@@ -30,4 +54,3 @@ class ApiError extends Error {
     this.customMessage = message
   }
 }
-

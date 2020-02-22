@@ -1,6 +1,7 @@
 import React from 'react'
 import { ItemStore } from '../../item-store'
 import { Item, List } from '../item'
+import { EditGroup } from './edit-group'
 
 export const Group = ({ group }) => {
   const isDeviceMember = () => group.type === 'DeviceGroup'
@@ -9,6 +10,7 @@ export const Group = ({ group }) => {
     <Item item={group}>
       {isDeviceMember() && <Devices devices={group.devicemembership} />}
       {group.lights.length > 0 && <Lights lights={group.lights} />}
+      <EditGroup group={ group } />
     </Item>
   )
 }
