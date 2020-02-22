@@ -10,8 +10,8 @@ export const Item = ({ item, children }) => {
   }
 
   return (
-    <div className="item" onClick={toggleExpanded}>
-      <ExpandButton expanded={expanded} />
+    <div className="item">
+      <ExpandButton expanded={expanded} toggleExpanded={toggleExpanded} />
       <Header item={item} />
       {children}
 
@@ -32,8 +32,12 @@ const Id = ({ children }) => <span className="id">{children}</span>
 const Title = ({ children }) => <h3 className="title">{children}</h3>
 const Type = ({ children }) => <span className="type">{children}</span>
 
-const ExpandButton = ({ expanded }) => {
-  return <span className="arrow"> {expanded ? '/\\' : '\\/'}</span>
+const ExpandButton = ({ expanded, toggleExpanded }) => {
+  return (
+    <span className="arrow">
+      <button onClick={toggleExpanded}>{expanded ? '/\\' : '\\/'}</button>
+    </span>
+  )
 }
 
 const ExtraInfo = ({ item }) => {
