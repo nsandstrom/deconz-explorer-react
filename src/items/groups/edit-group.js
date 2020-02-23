@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import DeconzClient from '../../api/deconz-client'
+import { ItemStore } from '../../item-store'
 import './group.scss'
 
 export const EditGroup = ({ group }) => {
   const [visible, setVisible] = useState(false)
-  const [attributes, setAttributes] = useState({ name: group.name })
+  const [attributes, setAttributes] = useState({ name: group.name, lights: [...group.lights] })
 
   const nameHasChanged = () => group.name !== attributes.name
   const updateName = event => {
     setAttributes({ ...attributes, name: event.target.value })
+  }
+
+  const lightsHasChanged = () => group.lights.sort().join() !== attributes.lights.sort().join()
+  const updateLights = members => {
+    setAttributes({ ...attributes, lights: members })
   }
 
   const handleSubmit = event => {
@@ -33,7 +39,11 @@ export const EditGroup = ({ group }) => {
             <form onSubmit={handleSubmit}>
               <label>Name</label>
               <input type="text" value={attributes.name} onChange={updateName} />
-              {nameHasChanged() && '*'}
+              {nameHasChanged() && ' *'}
+              <br />
+              <label>Lights</label>
+              {lightsHasChanged() && ' *'}
+              <LightsList members={attributes.lights} updateMembers={updateLights} />
               <br />
               <button type="submit">OK</button>
             </form>
@@ -42,5 +52,29 @@ export const EditGroup = ({ group }) => {
         </div>
       )}
     </div>
+  )
+}
+
+const LightsList = ({ members, updateMembers }) => {
+  const lights = ItemStore.lights
+  const isMember = id => members.includes(id)
+
+  const handleClick = id => {
+    if (isMember(id)) {
+      members = members.filter(member => member !== id)
+    } else {
+      members.push(id)
+    }
+    updateMembers(members)
+  }
+  return (
+    <ul>
+      {lights.map(light => (
+        <li key={light.id}>
+          <input type="checkbox" onChange={() => handleClick(light.id)} checked={isMember(light.id)} />
+          {light.name}
+        </li>
+      ))}
+    </ul>
   )
 }
