@@ -4,6 +4,7 @@ import { UrlStore } from './api-url-store'
 import { parseData } from './data-scrubber'
 import { Items } from './items'
 import { ItemStore } from './item-store'
+import AppControls from './app-controls'
 
 export const Application = () => {
   const [apiUrl, setApiUrl] = useState('')
@@ -24,6 +25,8 @@ export const Application = () => {
       setApiData(prettyData)
     })
   }
+
+  AppControls.init({ reloadAll: updateItems })
 
   const shouldShowContent = !!apiData
   const hasApiUrl = !!apiUrl

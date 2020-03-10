@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DeconzClient from '../../api/deconz-client'
-import { ItemStore } from '../../item-store'
+
 import './group.scss'
 
 export const EditGroup = ({ group }) => {
@@ -26,7 +26,10 @@ export const EditGroup = ({ group }) => {
 
     if (Object.keys(newAttributes).length < 1) return
 
-    DeconzClient.updateGroup(group.id, newAttributes).then(setVisible(false))
+    DeconzClient.updateGroup(group.id, newAttributes)
+      .then(() => App.reloadAll())
+      .then(() => setVisible(false))
+      .catch(error => console.log(error))
   }
 
   return (
