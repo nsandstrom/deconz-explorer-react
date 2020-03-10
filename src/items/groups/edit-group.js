@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DeconzClient from '../../api/deconz-client'
-
+import { App } from '../../app-controls'
 import './group.scss'
 
 export const EditGroup = ({ group }) => {
