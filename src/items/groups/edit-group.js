@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import DeconzClient from '../../api/deconz-client'
+import { ItemStore } from '../../item-store'
 import { App } from '../../app-controls'
 import './group.scss'
 
